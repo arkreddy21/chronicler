@@ -8,7 +8,7 @@ export default function LogoutButton() {
   const router = useRouter();
 
   // Create a Supabase client configured to use cookies
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<DB>();
 
   const signOut = async () => {
     await supabase.auth.signOut();
