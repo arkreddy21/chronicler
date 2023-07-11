@@ -15,6 +15,8 @@ export default function Login() {
   const router = useRouter();
   const supabase = createClientComponentClient<DB>();
 
+  //TODO: redirect user if they are already logged in
+
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await supabase.auth.signUp({
@@ -33,8 +35,8 @@ export default function Login() {
       email,
       password,
     });
-    router.push("/");
-    router.refresh();
+    router.push("/app");
+    // router.refresh();
   };
 
   return (
