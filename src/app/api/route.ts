@@ -5,11 +5,12 @@ import { v4 as uuidv4 } from "uuid";
 
 
 export async function POST(request: Request) {
-  const { desc, uid } = await request.json();
+  const { desc, title, uid } = await request.json();
 
   const supabase = createRouteHandlerClient<DB>({ cookies });
   const { data } = await supabase.from("journals").insert({
-    description: desc.valueOf(),
+    description: desc,
+    title: title,
     user_id: uid,
     id: uuidv4(),
   });
