@@ -14,6 +14,7 @@ export interface Database {
           created_at: string
           description: string
           id: string
+          img_path: string
           title: string | null
           user_id: string
         }
@@ -21,6 +22,7 @@ export interface Database {
           created_at?: string
           description?: string
           id: string
+          img_path?: string
           title?: string | null
           user_id: string
         }
@@ -28,6 +30,7 @@ export interface Database {
           created_at?: string
           description?: string
           id?: string
+          img_path?: string
           title?: string | null
           user_id?: string
         }
