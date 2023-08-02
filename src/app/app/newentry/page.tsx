@@ -42,20 +42,21 @@ export default function AddEntry() {
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center px-4 h-screen py-4">
-      <h3>Add new entry</h3>
+    <div className="flex flex-col gap-4 justify-center px-4 h-screen py-4 bg-primary dark:bg-primarydark">
+      <h3>Add new journal</h3>
       <Input
         placeholder="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className="bg-primary dark:bg-primarydark3"
       />
       <Textarea
         placeholder="Type here"
         onChange={(e) => setDesc(e.target.value)}
         value={desc}
-        className="resize-none grow"
+        className="resize-none grow bg-primary dark:bg-primarydark3 focus:outline-none"
       />
-      <Label htmlFor="picture" className="text-blue-500 cursor-pointer" >Add picture</Label>
+      <Label htmlFor="picture" className="text-blue-500 cursor-pointer text-accent" >Add picture</Label>
       <input
         id="picture"
         type="file"
@@ -70,7 +71,7 @@ export default function AddEntry() {
           className="h-32 w-32 object-contain"
         />
       )}
-      <Button onClick={insertEntry}>Done</Button>
+      <Button className="bg-accent" onClick={insertEntry}>Done</Button>
     </div>
   );
 }

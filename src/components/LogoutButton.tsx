@@ -16,7 +16,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <Button variant="outline" onClick={signOut}>
+    <Button  className="bg-primary2 dark:bg-primarydark2" onClick={signOut}>
       Logout
     </Button>
   );

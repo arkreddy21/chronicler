@@ -38,8 +38,8 @@ export default function Login() {
   };
 
   return (
-    <div className="p-12 mx-auto w-8/12">
-      <Link href="/" className={buttonVariants({ variant: "outline" })}>
+    <div className="py-12 px-16 bg-primary dark:bg-primarydark h-screen">
+      <Link href="/" className={buttonVariants({ variant: "secondary" }) +"bg-primary2 dark:bg-primarydark2"}>
         <ChevronLeft className="mr-2 h-4 w-4" />
         Back
       </Link>
@@ -50,24 +50,27 @@ export default function Login() {
         </p>
       ) : (
         <form
-          className="flex-1 flex flex-col w-full justify-center gap-2 mt-6 text-foreground"
+          className="flex flex-col w-full justify-center gap-2 mt-6 mx-auto max-w-xl"
           onSubmit={view === "sign-in" ? handleSignIn : handleSignUp}
         >
+          <p className="text-accent text-xl mx-auto" >Login to continue</p>
           <Input
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             type="email"
             placeholder="Email"
+            className="bg-primary dark:bg-primarydark"
           />
           <Input
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
             placeholder="••••••••"
+            className="bg-primary dark:bg-primarydark"
           />
           {view === "sign-in" && (
             <>
-              <Button>Sign In</Button>
+              <Button className="bg-accent" >Sign In</Button>
               <p className="text-sm text-center">
                 Don&apos;t have an account?
                 <button
@@ -81,7 +84,7 @@ export default function Login() {
           )}
           {view === "sign-up" && (
             <>
-              <Button>Sign Up</Button>
+              <Button className="bg-accent w-md mx-auto">Sign Up</Button>
               <p className="text-sm text-center">
                 Already have an account?
                 <button

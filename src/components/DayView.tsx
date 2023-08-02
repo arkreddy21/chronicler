@@ -5,15 +5,15 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function DayView({ entries }: { entries: Journal[] }) {
   return (
-    <div className="pb-4 pt-2 mx-4">
-      <p className="text-blue-500 font-semibold">
+    <div className="pb-4 pt-2 px-4 max-w-3xl mx-auto">
+      <p className="font-semibold text-accent">
         {new Date(entries[0].created_at).toDateString()}
       </p>
-      <div className="rounded-xl bg-blue-100">
+      <div className="rounded-xl bg-primary2 dark:bg-primarydark2 shadow-sm">
         {entries.map((journal) => (
           <div key={journal.id} className={"py-2 px-4" + (journal.img_path ? " grid grid-cols-[1fr,96px]" : "")}>
             <div className="col-[1]" >
-              <p className="text-teal-600 text-sm" suppressHydrationWarning>
+              <p className="text-sm" suppressHydrationWarning>
                 {new Date(journal.created_at).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -46,7 +46,7 @@ function AsyncImage({ src }: { src: string }) {
   if (image) {
     return (
       <img
-        className="h-24 w-24 col-[2]"
+        className="h-24 w-24 rounded-xl col-[2]"
         src={URL.createObjectURL(image)}
         alt="preview"
       />
