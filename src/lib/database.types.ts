@@ -36,18 +36,27 @@ export interface Database {
         }
         Relationships: []
       }
-      users: {
+      todos: {
         Row: {
-          id: number
-          user_name: string
+          created_at: string
+          id: string
+          is_done: boolean
+          title: string
+          user_id: string
         }
         Insert: {
-          id?: number
-          user_name: string
+          created_at?: string
+          id?: string
+          is_done?: boolean
+          title: string
+          user_id: string
         }
         Update: {
-          id?: number
-          user_name?: string
+          created_at?: string
+          id?: string
+          is_done?: boolean
+          title?: string
+          user_id?: string
         }
         Relationships: []
       }

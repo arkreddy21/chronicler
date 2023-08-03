@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Book, StickyNote, CalendarDays, Moon, Sun, Plus } from "lucide-react";
+import { Book, ListTodo, CalendarDays, Moon, Sun, Plus } from "lucide-react";
 import LogoutButton from "./LogoutButton";
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
@@ -18,8 +18,8 @@ export default function Navbar({
         <Link href="/app">
           <Book />
         </Link>
-        <Link href="/app/notes">
-          <StickyNote />
+        <Link href="/app/todos">
+          <ListTodo />
         </Link>
         <Link href="/app/calendar">
           <CalendarDays />
@@ -31,8 +31,8 @@ export default function Navbar({
         <Link href="/app" className="flex flex-row gap-2">
           <Book /> {"Journals"}
         </Link>
-        <Link href="/app/notes" className="flex flex-row gap-2">
-          <StickyNote /> {"Notes"}
+        <Link href="/app/todos" className="flex flex-row gap-2">
+          <ListTodo /> {"Todo-list"}
         </Link>
         <Link href="/app/calendar" className="flex flex-row gap-2">
           <CalendarDays /> {"Calendar"}

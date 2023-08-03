@@ -1,9 +1,8 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import LogoutButton from "@/components/LogoutButton";
 import DayView from "@/components/DayView";
-import { Plus, Book, StickyNote, CalendarDays, Hourglass } from "lucide-react";
+import { Plus, Hourglass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default async function App() {
