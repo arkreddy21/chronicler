@@ -4,6 +4,7 @@ import { Book, ListTodo, CalendarDays, Moon, Sun, Plus } from "lucide-react";
 import LogoutButton from "./LogoutButton";
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
+import MenuButton from "./MenuButton";
 
 export default function Navbar({
   userEmail,
@@ -24,6 +25,7 @@ export default function Navbar({
         <Link href="/app/calendar">
           <CalendarDays />
         </Link>
+        <MenuButton userEmail={userEmail} />
       </div>
 
       <div className="hidden lg:visible w-96 p-4 h-screen lg:flex flex-col gap-4 bg-white dark:bg-primarydark3">
