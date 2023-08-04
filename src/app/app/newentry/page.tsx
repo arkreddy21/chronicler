@@ -36,13 +36,12 @@ export default function AddEntry() {
       img_path: uploadedImage?.data?.path
     });
 
-    console.log("insert done");
-    console.log(data);
     router.push("/app");
+    router.refresh();
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center px-4 h-screen py-4 bg-primary dark:bg-primarydark">
+    <div className="flex flex-col gap-4 justify-center px-4 h-screen pt-4 pb-24 bg-primary dark:bg-primarydark">
       <h3>Add new journal</h3>
       <Input
         placeholder="title"

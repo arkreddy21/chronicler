@@ -34,7 +34,6 @@ export default function Login() {
       password,
     });
     router.push("/app");
-    // router.refresh();
   };
 
   return (

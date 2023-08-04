@@ -19,8 +19,8 @@ export default function DayView({ entries }: { entries: Journal[] }) {
                   minute: "2-digit",
                 })}
               </p>
-              <p className="font-semibold">{journal.title}</p>
-              <p className="">{journal.description}</p>
+              <p className="font-semibold pr-2">{journal.title}</p>
+              <p className="pr-2">{journal.description}</p>
             </div>
             {journal.img_path && <AsyncImage src={journal.img_path} />}
           </div>

@@ -13,16 +13,17 @@ export default async function App() {
     .select()
     .order("created_at", { ascending: false });
   var groupedData: Journal[][] = [[]];
-  var currentDate = data && new Date(data[0].created_at).toDateString();
+  var currentDate = data && data[0] && new Date(data[0].created_at).toDateString();
   data?.forEach((item) => {
     if (new Date(item.created_at).toDateString() === currentDate) {
       groupedData.at(-1)?.push(item);
     } else {
-      currentDate = item.created_at;
+      currentDate = new Date(item.created_at).toDateString();
       groupedData.push([]);
       groupedData.at(-1)?.push(item);
     }
   });
+  if( groupedData[0].length ===0) {groupedData=[]}
 
   return (
     <main className="min-h-screen bg-primary dark:bg-primarydark pb-60">

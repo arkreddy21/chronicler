@@ -2,6 +2,7 @@
 import DayView from "@/components/DayView";
 import { Calendar } from "@/components/ui/calendar";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Hourglass } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function CalendarView() {
@@ -27,11 +28,15 @@ export default function CalendarView() {
 
   return (
     <div>
+      <header className="flex flex-row items-center justify-center gap-2 px-12 py-2">
+        <Hourglass />
+        <p>Chronicler</p>
+      </header>
       <Calendar
         mode="single"
         selected={date}
         onSelect={setDate}
-        className="rounded-md border"
+        className="rounded-md border mx-auto w-72 mt-4"
       />
       {entries.length > 0 ? <DayView entries={entries} /> : <p>no entries</p>}
     </div>
