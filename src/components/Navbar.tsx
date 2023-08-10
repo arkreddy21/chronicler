@@ -5,6 +5,8 @@ import LogoutButton from "./LogoutButton";
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
 import MenuButton from "./MenuButton";
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Navbar({
   userEmail,
@@ -12,32 +14,70 @@ export default function Navbar({
   userEmail: string | undefined;
 }) {
   const { theme, setTheme } = useTheme();
-
+  const path = usePathname();
+  const pathanim = (
+    <motion.span
+      layoutId="activepath"
+      className="absolute left-0 top-0 block h-full w-full rounded-md bg-opacity-20 bg-accent"
+    />
+  );
+  const pathanimlg = (
+    <motion.span
+      layoutId="activepathlg"
+      className="absolute left-0 top-0 block h-full w-full rounded-md bg-opacity-20 bg-accent"
+    />
+  );
   return (
     <>
-      <div className="lg:hidden fixed bottom-0 flex flex-row items-center justify-evenly h-20 w-full bg-white dark:bg-primarydark3">
-        <Link href="/app">
-          <Book />
+      <div className="lg:hidden z-10 fixed bottom-0 flex flex-row items-center justify-evenly h-20 w-full bg-white dark:bg-primarydark3">
+        <Link
+          className="relative p-2 flex items-center justify-center"
+          href="/app"
+        >
+          {path === "/app" && pathanim}
+          <Book color={path === "/app" ? "#3d99ff" : "currentColor"} />
         </Link>
-        <Link href="/app/todos">
-          <ListTodo />
+        <Link
+          className="relative p-2 flex items-center justify-center"
+          href="/app/todos"
+        >
+          {path === "/app/todos" && pathanim}
+          <ListTodo
+            color={path === "/app/todos" ? "#3d99ff" : "currentColor"}
+          />
         </Link>
-        <Link href="/app/calendar">
-          <CalendarDays />
+        <Link
+          className="relative p-2 flex items-center justify-center"
+          href="/app/calendar"
+        >
+          {path === "/app/calendar" && pathanim}
+          <CalendarDays
+            color={path === "/app/calendar" ? "#3d99ff" : "currentColor"}
+          />
         </Link>
         <MenuButton userEmail={userEmail} />
       </div>
 
-      <div className="hidden lg:visible w-96 p-4 h-screen lg:flex flex-col gap-4 bg-white dark:bg-primarydark3">
+      <div className="hidden lg:visible z-10 w-96 p-4 h-screen lg:flex flex-col gap-4 bg-white dark:bg-primarydark3">
         <p>Hey, {userEmail}</p>
-        <Link href="/app" className="flex flex-row gap-2">
-          <Book /> {"Journals"}
+        <Link href="/app" className="relative p-3 flex flex-row gap-2">
+          {path === "/app" && pathanimlg}
+          <Book color={path === "/app" ? "#3d99ff" : "currentColor"} />{" "}
+          {"Journals"}
         </Link>
-        <Link href="/app/todos" className="flex flex-row gap-2">
-          <ListTodo /> {"Todo-list"}
+        <Link href="/app/todos" className="relative p-3 flex flex-row gap-2">
+          {path === "/app/todos" && pathanimlg}
+          <ListTodo
+            color={path === "/app/todos" ? "#3d99ff" : "currentColor"}
+          />{" "}
+          {"Todo-list"}
         </Link>
-        <Link href="/app/calendar" className="flex flex-row gap-2">
-          <CalendarDays /> {"Calendar"}
+        <Link href="/app/calendar" className="relative p-3 flex flex-row gap-2">
+          {path === "/app/calendar" && pathanimlg}
+          <CalendarDays
+            color={path === "/app/calendar" ? "#3d99ff" : "currentColor"}
+          />{" "}
+          {"Calendar"}
         </Link>
         <div className="grow">
           <Button asChild className="bg-accent">

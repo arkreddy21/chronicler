@@ -19,6 +19,7 @@ import {
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { PageWrapper } from "@/components/PageWrapper";
 
 export default function Todos() {
   const supabase = createClientComponentClient<DB>();
@@ -64,81 +65,83 @@ export default function Todos() {
   };
 
   return (
-    <div className="min-h-screen bg-primary dark:bg-primarydark px-4 pb-60">
-      <header className="flex flex-row items-center justify-center gap-2 px-12 py-2">
-        <Hourglass />
-        <p>Chronicler</p>
-      </header>
-      <div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button>
-              <Plus />
-              add
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Add new todo</DialogTitle>
-            </DialogHeader>
-            <div>
-              <Input
-                value={newTodo}
-                onChange={(e) => setNewTodo(e.target.value)}
-              />
-            </div>
-            <DialogFooter>
-              <Button type="submit" onClick={addTodo}>
-                Done
+    <PageWrapper>
+      <div className="min-h-screen bg-primary dark:bg-primarydark px-4 pb-60">
+        <header className="flex flex-row items-center justify-center gap-2 px-12 py-2">
+          <Hourglass />
+          <p>Chronicler</p>
+        </header>
+        <div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>
+                <Plus />
+                add
               </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Add new todo</DialogTitle>
+              </DialogHeader>
+              <div>
+                <Input
+                  value={newTodo}
+                  onChange={(e) => setNewTodo(e.target.value)}
+                />
+              </div>
+              <DialogFooter>
+                <Button type="submit" onClick={addTodo}>
+                  Done
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
 
-        <Button
-          className={showArchive ? "bg-accent" : ""}
-          onClick={() => setShowArchive((showArchive) => !showArchive)}
-        >
-          <Archive />
-          archive
-        </Button>
+          <Button
+            className={showArchive ? "bg-accent" : ""}
+            onClick={() => setShowArchive((showArchive) => !showArchive)}
+          >
+            <Archive />
+            archive
+          </Button>
+        </div>
+        <div className="flex flex-col max-w-3xl mx-auto mt-4 justify-center gap-3">
+          {todos?.map((item: Todo) => {
+            if (item.is_done === false && showArchive === false) {
+              return (
+                <div
+                  key={item.id}
+                  className="rounded-xl p-4 flex flex-row gap-2 bg-primary2 dark:bg-primarydark2 shadow-sm"
+                >
+                  <p className="grow">{item.title}</p>
+                  <CheckCircle
+                    color="#3d99ff"
+                    onClick={() => updateTodo(item.id)}
+                  />
+                  <MinusCircle
+                    color="#ef4444"
+                    onClick={() => deleteTodo(item.id)}
+                  />
+                </div>
+              );
+            } else if (item.is_done === true && showArchive === true) {
+              return (
+                <div
+                  key={item.id}
+                  className="rounded-xl p-4 flex flex-row gap-2 bg-primary2 dark:bg-primarydark2 shadow-sm"
+                >
+                  <p className="grow">{item.title}</p>
+                  <Badge variant="outline">done</Badge>
+                  <MinusCircle
+                    color="#ef4444"
+                    onClick={() => deleteTodo(item.id)}
+                  />
+                </div>
+              );
+            }
+          })}
+        </div>
       </div>
-      <div className="flex flex-col max-w-3xl mx-auto mt-4 justify-center gap-3">
-        {todos?.map((item: Todo) => {
-          if (item.is_done === false && showArchive === false ) {
-            return (
-              <div
-                key={item.id}
-                className="rounded-xl p-4 flex flex-row gap-2 bg-primary2 dark:bg-primarydark2 shadow-sm"
-              >
-                <p className="grow">{item.title}</p>
-                <CheckCircle
-                  color="#3d99ff"
-                  onClick={() => updateTodo(item.id)}
-                />
-                <MinusCircle
-                  color="#ef4444"
-                  onClick={() => deleteTodo(item.id)}
-                />
-              </div>
-            );
-          } else if (item.is_done === true && showArchive === true) {
-            return (
-              <div
-                key={item.id}
-                className="rounded-xl p-4 flex flex-row gap-2 bg-primary2 dark:bg-primarydark2 shadow-sm"
-              >
-                <p className="grow">{item.title}</p>
-                <Badge variant="outline" >done</Badge>
-                <MinusCircle
-                  color="#ef4444"
-                  onClick={() => deleteTodo(item.id)}
-                />
-              </div>
-            );
-          }
-        })}
-      </div>
-    </div>
+    </PageWrapper>
   );
 }
