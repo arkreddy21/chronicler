@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Chronicler",
   description: "A personal journal",
 };
+export const dynamic = 'force-dynamic'
 
 export default function RootLayout({
   children,
